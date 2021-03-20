@@ -1,4 +1,4 @@
-# Build TensorFlow Lite Runtime for ARM boards (musl libc)
+# Build TFLite Runtime for ARM boards (with musl libc)
 
 [![Donate](https://img.shields.io/badge/donate-Yandex-red.svg)](https://money.yandex.ru/to/4100110221014297)
 
