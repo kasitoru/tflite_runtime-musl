@@ -22,7 +22,7 @@ wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/main/download_toolcha
 3. Fix issue https://github.com/tensorflow/tensorflow/issues/47737:
 
 ```bash
-wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/master/build_pip_package_with_cmake.patch
+wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/main/build_pip_package_with_cmake.patch
 git apply build_pip_package_with_cmake.patch
 rm build_pip_package_with_cmake.patch
 ```
@@ -30,7 +30,7 @@ rm build_pip_package_with_cmake.patch
 4. Fix issue https://github.com/google/XNNPACK/issues/981:
 
 ```bash
-wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/master/xnnpack.patch
+wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/main/xnnpack.patch
 git apply xnnpack.patch
 rm xnnpack.patch
 ```
