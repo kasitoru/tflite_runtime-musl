@@ -49,3 +49,4 @@ The binary files will be located in the directory `tensorflow/lite/tools/pip_pac
 * Official Build TensorFlow Lite for ARM boards [guide](https://www.tensorflow.org/lite/guide/build_arm)
 * Automated cross toolchain builder: [musl-cross-make](https://github.com/richfelker/musl-cross-make)
 * Pre-built GCC musl-based toolchains: [muls.cc](http://musl.cc)
+* Cross-compilation toolchains for Linux: [toolchains.bootlin.com](https://toolchains.bootlin.com)
