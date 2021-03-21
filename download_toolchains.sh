@@ -24,60 +24,66 @@ mkdir -p ${TOOLCHAINS_DIR}
 
 case $1 in
 	armhf)
-    ARMCC_ROOT=${TOOLCHAINS_DIR}/armv7l-linux-musleabihf-cross
+    ARMCC_ROOT=${TOOLCHAINS_DIR}/armv7-eabihf--musl--stable-2020.02-2
     if [[ ! -d ${ARMCC_ROOT} ]]; then
-      curl -LO https://more.musl.cc/10/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz >&2
-      tar zxvf armv7l-linux-musleabihf-cross.tgz -C ${TOOLCHAINS_DIR} >&2
-      rm armv7l-linux-musleabihf-cross.tgz
-      echo '#define __BEGIN_DECLS extern "C" {' >> "${ARMCC_ROOT}/armv7l-linux-musleabihf/include/features.h"
-      echo '#define __END_DECLS }' >> "${ARMCC_ROOT}/armv7l-linux-musleabihf/include/features.h"
-      echo '#define __THROW' >> "${ARMCC_ROOT}/armv7l-linux-musleabihf/include/features.h"
-      echo '#define __nonnull(params)' >> "${ARMCC_ROOT}/armv7l-linux-musleabihf/include/features.h"
+      curl -LO https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2020.02-2.tar.bz2 >&2
+      tar xvjf armv7-eabihf--musl--stable-2020.02-2.tar.bz2 -C ${TOOLCHAINS_DIR} >&2
+      rm armv7-eabihf--musl--stable-2020.02-2.tar.bz2
+      echo '#define __BEGIN_DECLS extern "C" {' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
+      echo '#define __END_DECLS }' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
+      echo '#define __THROW' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
+      echo '#define __nonnull(params)' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
     fi
     echo "ARMCC_FLAGS=\"-march=armv7-a -mfpu=neon-vfpv4 -funsafe-math-optimizations \
-      -isystem ${ARMCC_ROOT}/armv7l-linux-musleabihf/include/c++/10.2.1 \
-      -isystem ${ARMCC_ROOT}/armv7l-linux-musleabihf/include \
-      -isystem ${ARMCC_ROOT}/lib/gcc/armv7l-linux-musleabihf/10.2.1/include \
-      -isystem ${ARMCC_ROOT}/lib/gcc/armv7l-linux-musleabihf/10.2.1/include-fixed \
+      -isystem ${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/include/c++/8.4.0 \
+      -isystem ${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/include \
+      -isystem ${ARMCC_ROOT}/lib/gcc/arm-buildroot-linux-musleabihf/8.4.0/include \
+      -isystem ${ARMCC_ROOT}/lib/gcc/arm-buildroot-linux-musleabihf/8.4.0/include-fixed \
+      -isystem ${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include \
+      -isystem ${ARMCC_ROOT}/include \
       -isystem \"\${CROSSTOOL_PYTHON_INCLUDE_PATH}\" \
       -isystem /usr/include\""
-    echo "ARMCC_PREFIX=${ARMCC_ROOT}/bin/armv7l-linux-musleabihf-"
+    echo "ARMCC_PREFIX=${ARMCC_ROOT}/bin/arm-buildroot-linux-musleabihf-"
 		;;
 	aarch64)
-    ARMCC_ROOT=${TOOLCHAINS_DIR}/aarch64-linux-musl-cross
+    ARMCC_ROOT=${TOOLCHAINS_DIR}/aarch64--musl--stable-2020.02-2
     if [[ ! -d ${ARMCC_ROOT} ]]; then
-      curl -LO https://more.musl.cc/10/x86_64-linux-musl/aarch64-linux-musl-cross.tgz >&2
-      tar zxvf aarch64-linux-musl-cross.tgz -C ${TOOLCHAINS_DIR} >&2
-      rm aarch64-linux-musl-cross.tgz
+      curl -LO https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--musl--stable-2020.02-2.tar.bz2 >&2
+      tar xvjf aarch64--musl--stable-2020.02-2.tar.bz2 -C ${TOOLCHAINS_DIR} >&2
+      rm aarch64--musl--stable-2020.02-2.tar.bz2
     fi
     echo "ARMCC_FLAGS=\"-funsafe-math-optimizations \
-      -isystem ${ARMCC_ROOT}/aarch64-linux-musl/include/c++/10.2.1 \
-      -isystem ${ARMCC_ROOT}/aarch64-linux-musl/include \
-      -isystem ${ARMCC_ROOT}/lib/gcc/aarch64-linux-musl/10.2.1/include \
-      -isystem ${ARMCC_ROOT}/lib/gcc/aarch64-linux-musl/10.2.1/include-fixed \
+      -isystem ${ARMCC_ROOT}/aarch64-buildroot-linux-musl/include/c++/8.4.0 \
+      -isystem ${ARMCC_ROOT}/aarch64-buildroot-linux-musl/include \
+      -isystem ${ARMCC_ROOT}/lib/gcc/aarch64-buildroot-linux-musl/8.4.0/include \
+      -isystem ${ARMCC_ROOT}/lib/gcc/aarch64-buildroot-linux-musl/8.4.0/include-fixed \
+      -isystem ${ARMCC_ROOT}/aarch64-buildroot-linux-musl/sysroot/usr/include \
+      -isystem ${ARMCC_ROOT}/include \
       -isystem \"\${CROSSTOOL_PYTHON_INCLUDE_PATH}\" \
       -isystem /usr/include\""
-    echo "ARMCC_PREFIX=${ARMCC_ROOT}/bin/aarch64-linux-musl-"
+    echo "ARMCC_PREFIX=${ARMCC_ROOT}/bin/aarch64-buildroot-linux-musl-"
 		;;
 	rpi0)
-    ARMCC_ROOT=${TOOLCHAINS_DIR}/armv6-linux-musleabihf-cross
+    ARMCC_ROOT=${TOOLCHAINS_DIR}/armv6-eabihf--musl--stable-2020.02-2
     if [[ ! -d ${ARMCC_ROOT} ]]; then
-      curl -LO https://more.musl.cc/10/x86_64-linux-musl/armv6-linux-musleabihf-cross.tgz >&2
-      tar zxvf armv6-linux-musleabihf-cross.tgz -C ${TOOLCHAINS_DIR} >&2
-      rm armv6-linux-musleabihf-cross.tgz
-      echo '#define __BEGIN_DECLS extern "C" {' >> "${ARMCC_ROOT}/armv6-linux-musleabihf/include/features.h"
-      echo '#define __END_DECLS }' >> "${ARMCC_ROOT}/armv6-linux-musleabihf/include/features.h"
-      echo '#define __THROW' >> "${ARMCC_ROOT}/armv6-linux-musleabihf/include/features.h"
-      echo '#define __nonnull(params)' >> "${ARMCC_ROOT}/armv6-linux-musleabihf/include/features.h"
+      curl -LO https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--musl--stable-2020.02-2.tar.bz2 >&2
+      tar xvjf armv6-eabihf--musl--stable-2020.02-2.tar.bz2 -C ${TOOLCHAINS_DIR} >&2
+      rm armv6-eabihf--musl--stable-2020.02-2.tar.bz2
+      echo '#define __BEGIN_DECLS extern "C" {' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
+      echo '#define __END_DECLS }' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
+      echo '#define __THROW' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
+      echo '#define __nonnull(params)' >> "${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include/features.h"
     fi
     echo "ARMCC_FLAGS=\"-march=armv6 -mfpu=vfp -funsafe-math-optimizations \
-      -isystem ${ARMCC_ROOT}/armv6-linux-musleabihf/include/c++/10.2.1 \
-      -isystem ${ARMCC_ROOT}/armv6-linux-musleabihf/include \
-      -isystem ${ARMCC_ROOT}/lib/gcc/armv6-linux-musleabihf/10.2.1/include \
-      -isystem ${ARMCC_ROOT}/lib/gcc/armv6-linux-musleabihf/10.2.1/include-fixed \
+      -isystem ${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/include/c++/8.4.0 \
+      -isystem ${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/include \
+      -isystem ${ARMCC_ROOT}/lib/gcc/arm-buildroot-linux-musleabihf/8.4.0/include \
+      -isystem ${ARMCC_ROOT}/lib/gcc/arm-buildroot-linux-musleabihf/8.4.0/include-fixed \
+      -isystem ${ARMCC_ROOT}/arm-buildroot-linux-musleabihf/sysroot/usr/include \
+      -isystem ${ARMCC_ROOT}/include \
       -isystem \"\${CROSSTOOL_PYTHON_INCLUDE_PATH}\" \
       -isystem /usr/include\""
-    echo "ARMCC_PREFIX=${ARMCC_ROOT}/bin/armv6-linux-musleabihf-"
+    echo "ARMCC_PREFIX=${ARMCC_ROOT}/bin/arm-buildroot-linux-musleabihf-"
 		;;
 	*)
 		echo "Usage: download_toolchains.sh [armhf|aarch64|rpi0]" >&2
