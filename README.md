@@ -9,7 +9,7 @@ This page describes how to build the TensorFlow Lite tflite_runtime Python libra
 1. Clone TensorFlow repository:
 
 ```bash
-git clone https://github.com/tensorflow/tensorflow
+git clone --depth 1 --branch v2.5.0 https://github.com/tensorflow/tensorflow
 cd tensorflow
 ```
 
@@ -22,7 +22,7 @@ wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/musl-1.1.24/download_
 3. Fix issue https://github.com/tensorflow/tensorflow/issues/47737:
 
 ```bash
-wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/musl-1.1.24/build_pip_package_with_cmake.patch
+wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/v2.5.0/build_pip_package_with_cmake.patch
 git apply build_pip_package_with_cmake.patch
 rm build_pip_package_with_cmake.patch
 ```
@@ -30,7 +30,7 @@ rm build_pip_package_with_cmake.patch
 4. Fix issue https://github.com/google/XNNPACK/issues/981:
 
 ```bash
-wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/musl-1.1.24/xnnpack.patch
+wget https://github.com/avdeevsv91/tflite_runtime-musl/raw/v2.5.0/xnnpack.patch
 git apply xnnpack.patch
 rm xnnpack.patch
 ```
