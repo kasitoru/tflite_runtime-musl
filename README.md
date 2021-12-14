@@ -9,7 +9,7 @@ This page describes how to build the TensorFlow Lite tflite_runtime Python libra
 1. Clone TensorFlow repository:
 
 ```bash
-git clone --depth 1 --branch v2.5.1 https://github.com/tensorflow/tensorflow
+git clone --depth 1 --branch v2.5.2 https://github.com/tensorflow/tensorflow
 cd tensorflow
 ```
 
@@ -19,15 +19,7 @@ cd tensorflow
 wget https://github.com/kasitoru/tflite_runtime-musl/raw/v2.5.1/download_toolchains.sh -O tensorflow/lite/tools/cmake/download_toolchains.sh
 ```
 
-3. Fix issue https://github.com/tensorflow/tensorflow/issues/47737:
-
-```bash
-wget https://github.com/kasitoru/tflite_runtime-musl/raw/v2.5.1/build_pip_package_with_cmake.patch
-git apply build_pip_package_with_cmake.patch
-rm build_pip_package_with_cmake.patch
-```
-
-4. Fix issue https://github.com/google/XNNPACK/issues/981:
+3. Fix issue https://github.com/google/XNNPACK/issues/981:
 
 ```bash
 wget https://github.com/kasitoru/tflite_runtime-musl/raw/v2.5.1/xnnpack.patch
@@ -35,11 +27,10 @@ git apply xnnpack.patch
 rm xnnpack.patch
 ```
 
-5. Start compiling ([more details](https://www.tensorflow.org/lite/guide/build_cmake_pip#arm_cross_compilation)):
+4. Start compiling ([more details](https://www.tensorflow.org/lite/guide/build_cmake_pip#arm_cross_compilation)):
 
 ```bash
-tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_cmake.sh armhf
+tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 tensorflow/lite/tools/pip_package/build_pip_package_with_cmake.sh armhf
 ```
 
 The binary files will be located in the directory `tensorflow/lite/tools/pip_package/gen/tflite_pip/python3.8/dist/`.
